@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HAPPYXMAS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Viewport for mobile responsiveness -->
+    <style>
+        h1,
+        p {
+            font-family: 'Brush Script MT', cursive;
+            font-size: 1.2em; /* Default font size */
+        }
+
+        p {
+            text-indent: 50px;
+        }
+
+        h1 {
+            font-weight: 200;
+        }
+
+        body {
+            margin: 0px;
+            background-color: beige;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            text-align: center;
+            transform: translate(-50%, -50%);
+            transition: transform 2s;
+            z-index: 2;
+        }
+
+        .heart > img {
+            width: 50px;
+            height: auto;
+        }
+
+        .message {
+            padding: 20px;
+            background-color: #d2b48c;
+            min-width: 400px;
+            max-height: 75%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            overflow-y: auto;
+            animation-name: openmsg;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-play-state: paused;
+            animation-fill-mode: forwards;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+            border-radius: 5px;
+        }
+
+        .heart > img:hover {
+            animation-name: beat;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-play-state: running;
+        }
+
+        @keyframes beat {
+            0% {
+                width: 50px;
+            }
+            25% {
+                width: 58px;
+            }
+            30% {
+                width: 50px;
+            }
+            50% {
+                width: 45px;
+            }
+            60% {
+                width: 50px;
+            }
+            75% {
+                width: 58px;
+            }
+            100% {
+                width: 50px;
+            }
+        }
+
+        @keyframes openmsg {
+            0% {
+                height: 0px;
+                padding: 0px 20px;
+            }
+            100% {
+                height: 75%;
+                padding: 20px 20px;
+            }
+        }
+
+        @keyframes heartMove {
+            0% {
+                top: 50%;
+            }
+            100% {
+                top: 85%;
+                transform: translate(-50%, 0);
+            }
+        }
+
+        .openNor {
+            animation-direction: normal;
+            animation-play-state: running;
+        }
+
+        .closeNor {
+            animation-direction: reverse;
+            animation-play-state: running;
+        }
+
+        .no-anim {
+            animation: none;
+        }
+
+        .closed {
+            height: 0px;
+            padding: 0px 20px;
+        }
+
+        .bottom {
+            bottom: 5px;
+        }
+
+        .openHer {
+            animation-name: heartMove;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-play-state: running;
+            animation-fill-mode: forwards;
+        }
+
+        .closeHer {
+            animation-name: heartMove;
+            animation-duration: 2s;
+            animation-timing-function: linear;
+            animation-play-state: running;
+            animation-direction: reverse;
+            animation-fill-mode: forwards;
+        }
+
+        .beating > img {
+            animation-name: beat;
+            animation-duration: 2s;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-play-state: running;
+        }
+
+        .openedHer {
+            top: 85%;
+            transform: translate(-50%, 0);
+        }
+
+        .gif-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .gif-container img {
+            width: 150px;
+            height: auto;
+        }
+
+        /* Snowflake styles */
+        .snow {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            font-size: 10px;
+            color: white;
+            animation: fall linear infinite;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8), 0 0 15px rgba(255, 255, 255, 0.6);
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(110vh);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            h1,
+            p {
+                font-size: 1em; /* Adjust font size for tablets */
+            }
+
+            .message {
+                min-width: 280px; /* Smaller message box on mobile */
+                max-height: 80%;
+            }
+
+            .heart > img {
+                width: 40px; /* Smaller heart on mobile */
+            }
+
+            .gif-container img {
+                width: 100px; /* Smaller gif on mobile */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1,
+            p {
+                font-size: 0.9em; /* Adjust font size for phones */
+            }
+
+            .message {
+                min-width: 250px; /* Smaller message box */
+                max-height: 70%;
+            }
+
+            .heart > img {
+                width: 35px; /* Even smaller heart for smaller screens */
+            }
+
+            .gif-container img {
+                width: 80px; /* Even smaller gif on phones */
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="snow"></div> <!-- Snow animation container -->
+        <label>
+            <div class="heart">
+                <img src="https://raw.githubusercontent.com/DzarelDeveloper/Img/main/Lope.png">
+            </div>
+            <input id="messageState" type="checkbox" style="display:none">
+        </label>
+        <div class="message">
+            <h1>To My Hanbebi,</h1>
+            <p>
+                Happy Holidays and Merry Christmas, Bebii!
+                <br><br>
+                Since we have different religions, I wanted to greet you in a way that celebrates both our worlds. I may not have much to give you this season, but I hope this simple gift makes your day brighter and your heart a little warmer.
+                <br><br>
+                Merry Christmas, my baby! As we step into another year, I wish you endless joy, success, and love. May the year ahead bring you all the blessings you deserve, and may you never hesitate to embrace love and happiness fully.
+                <br><br>
+                Most of all, I pray for your good health, a peaceful heart, and a holiday season filled with laughter, love, and cherished moments. Thank you for being my source of light and comfort—you mean the world to me.
+                <br><br>
+                Enjoy your holiday, Bebii, and know that I’m always here, rooting for you, loving you, and wishing you nothing but the best.
+                <br><br>
+                Until the end of time,<br>
+                Dominic
+            </p>
+            <div class="gif-container">
+                <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExazBoanBkN3kzN3FyaGs0azM4YzNtc3JqODNxdnV3ZmlqY2JxbXkxZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/oPmxYvyUGO6bK/giphy.gif" alt="Heart Animation">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $("#messageState").on("change", (x) => {
+            $(".message").removeClass("openNor").removeClass("closeNor");
+            if ($("#messageState").is(":checked")) {
+                $(".message").removeClass("closed").removeClass("no-anim").addClass("openNor");
+                $(".heart").removeClass("closeHer").removeClass("openedHer").addClass("openHer");
+                $(".container").stop().animate({ "backgroundColor": "#f48fb1" }, 2000);
+                console.log("I Like You");
+            } else {
+                $(".message").removeClass("no-anim").addClass("closeNor");
+                $(".heart").removeClass("openHer").removeClass("openedHer").addClass("closeHer");
+                $(".container").stop().animate({ "backgroundColor": "#fce4ec" }, 2000);
+                console.log("01010");
+            }
+        });
+
+        $(".message").on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+            if ($(".message").hasClass("closeNor"))
+                $(".message").addClass("closed");
+            $(".message").removeClass("openNor").removeClass("closeNor").addClass("no-anim");
+        });
+
+        $(".heart").on('webkitAnimationEnd oanimationend msAnimationEnd animationend', function(e) {
+            if (!$(".heart").hasClass("closeHer"))
+                $(".heart").addClass("openedHer").addClass("beating");
+            else
+                $(".heart").addClass("no-anim").removeClass("beating");
+            $(".heart").removeClass("openHer").removeClass("closeHer");
+        });
+
+        // Snowflake generation
+        const snowContainer = document.querySelector('.snow');
+        const snowflakeCount = 100;
+
+        for (let i = 0; i < snowflakeCount; i++) {
+            const snowflake = document.createElement('div');
+            snowflake.classList.add('snowflake');
+            snowflake.textContent = '❄';
+            snowflake.style.left = Math.random() * 100 + 'vw';
+            snowflake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            snowflake.style.animationDelay = Math.random() * 5 + 's';
+            snowflake.style.fontSize = Math.random() * 10 + 10 + 'px';
+            snowContainer.appendChild(snowflake);
+        }
+    </script>
+</body>
+</html>
+
